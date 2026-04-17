@@ -2,10 +2,14 @@
 
 declare(strict_types=1);
 
+use TypiCMS\Modules\News\Models\News;
+
 return [
+    'model' => News::class,
     'linkable_to_page' => true,
     'has_feed' => true,
     'per_page' => 30,
+    'llms_txt' => true,
     'order' => [
         'date' => 'desc',
     ],
