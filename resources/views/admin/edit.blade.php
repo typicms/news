@@ -3,7 +3,7 @@
 @section('title', $model->presentTitle())
 
 @section('content')
-    {!! BootForm::open()->put()->action(route('admin::update-news', $model->id))->addClass('main-content') !!}
+    {!! BootForm::open()->put()->action(route('admin::update-news', $model->id))->addClass('form') !!}
     {!! BootForm::bind($model) !!}
     @include('news::admin._form')
     {!! BootForm::close() !!}
