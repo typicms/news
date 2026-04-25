@@ -21,22 +21,25 @@ class ModuleServiceProvider extends ServiceProvider
     {
         $this->loadRoutesFrom(__DIR__.'/../routes/news.php');
 
-        $this->loadViewsFrom(__DIR__.'/../../resources/views/', 'news');
-
         $this->publishes([
             __DIR__.'/../../database/migrations/create_news_table.php.stub' => getMigrationFileName(
                 'create_news_table',
             ),
         ], 'typicms-migrations');
-        $this->publishes([__DIR__.'/../../resources/views' => resource_path('views/vendor/news')], 'typicms-views');
+        $this->publishes([
+            __DIR__.'/../../resources/views/admin/news' => resource_path('views/admin/news'),
+        ], ['typicms-views', 'typicms-admin-views', 'typicms-admin-news-views']);
+        $this->publishes([
+            __DIR__.'/../../resources/views/public/news' => resource_path('views/public/news'),
+        ], ['typicms-views', 'typicms-public-views', 'typicms-public-news-views']);
         $this->publishes([__DIR__.'/../../resources/scss' => resource_path('scss')], 'typicms-resources');
 
-        View::composer('core::admin._sidebar', SidebarViewComposer::class);
+        View::composer('admin::core._sidebar', SidebarViewComposer::class);
 
         /*
          * Add the page in the view.
          */
-        View::composer('news::public.*', function ($view): void {
+        View::composer('public::news.*', function ($view): void {
             $view->page = getPageLinkedToModule('news');
         });
     }

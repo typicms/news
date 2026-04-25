@@ -1,4 +1,4 @@
-@extends('pages::public.master')
+@extends('public::pages.master')
 
 @section('bodyClass', 'body-news body-news-index body-page body-page-' . $page->id)
 
@@ -14,11 +14,11 @@
     ]" />
     <div class="page-body">
         <div class="page-body-container">
-            @include('pages::public._main-content', ['page' => $page])
-            @include('files::public._document-list', ['model' => $page])
-            @include('files::public._image-list', ['model' => $page])
+            @include('public::pages._main-content', ['page' => $page])
+            @include('public::files._document-list', ['model' => $page])
+            @include('public::files._image-list', ['model' => $page])
 
-            @includeWhen($models->count() > 0, 'news::public._list', ['items' => $models])
+            @includeWhen($models->count() > 0, 'public::news._list', ['items' => $models])
             {!! $models->appends(Request::except('page'))->links() !!}
         </div>
     </div>

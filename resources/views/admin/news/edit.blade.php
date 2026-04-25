@@ -1,10 +1,10 @@
-@extends('core::admin.master')
+@extends('admin::core.master')
 
 @section('title', $model->presentTitle())
 
 @section('content')
     {!! BootForm::open()->put()->action(route('admin::update-news', $model->id))->addClass('form') !!}
     {!! BootForm::bind($model) !!}
-    @include('news::admin._form')
+    @include('admin::news._form')
     {!! BootForm::close() !!}
 @endsection
