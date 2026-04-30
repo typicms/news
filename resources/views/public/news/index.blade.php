@@ -1,8 +1,7 @@
-@extends('public::pages.master')
-
-@section('bodyClass', 'body-news body-news-index body-page body-page-' . $page->id)
-
-@section('page')
+<x-core::layouts.page
+    :page="$page"
+    :body-class="'body-news body-news-index body-page body-page-' . $page->id"
+>
     <x-core::json-ld :schema="[
         '@context' => 'https://schema.org',
         '@type' => 'ItemList',
@@ -22,4 +21,4 @@
             {!! $models->appends(Request::except('page'))->links() !!}
         </div>
     </div>
-@endsection
+</x-core::layouts.page>
