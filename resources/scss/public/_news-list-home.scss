@@ -1,0 +1,25 @@
+.news-list-home {
+    @include padding-top(6rem);
+    @include padding-bottom(6rem);
+    &-container {
+        @extend .container;
+    }
+    &-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        margin-bottom: $paragraph-margin-bottom * 2;
+    }
+    &-title {
+        margin: 0 !important;
+    }
+    &-button {
+        &-all {
+            @extend .primary-outline-btn;
+            &:focus-visible {
+                @extend .focus-ring;
+            }
+        }
+    }
+}
