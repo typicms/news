@@ -1,5 +1,15 @@
 <x-core::layouts.admin :title="__('News')">
-    <item-list url-base="/api/news" fields="id,image_id,date,status,title" table="news" title="news" include="image" :exportable="true" :duplicable="false" :searchable="['title']" :sorting="['-date']">
+    <item-list
+        url-base="/api/news"
+        fields="id,image_id,date,status,title"
+        table="news"
+        title="news"
+        include="image"
+        :exportable="true"
+        :duplicable="false"
+        :searchable="['title']"
+        :sorting="['-date']"
+    >
         <template #top-buttons v-if="$can('create news')">
             <x-core::create-button :url="route('admin::create-news')" :label="__('Create news')" />
         </template>

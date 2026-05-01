@@ -18,7 +18,8 @@
             </div>
         </header>
         <div class="news-body">
-            <x-core::json-ld :schema="[
+            <x-core::json-ld
+                :schema="[
                 '@context' => 'https://schema.org',
                 '@type' => 'NewsArticle',
                 'mainEntityOfPage' => [
@@ -42,7 +43,8 @@
                     ],
                 ],
                 'description' => $model->summary ? $model->summary : Str::limit(strip_tags($model->body), 200),
-            ]" />
+            ]"
+            />
             @if ($model->summary)
                 <p class="news-summary">{!! nl2br($model->summary) !!}</p>
             @endif

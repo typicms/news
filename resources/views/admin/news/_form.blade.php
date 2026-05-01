@@ -7,15 +7,17 @@
         <div class="col-lg-8">
             <div class="row gx-3">
                 <div class="col-sm-6">
-                    {!! BootForm::date(__('Date'), 'date')->value(old('date') ?: ($model->date ?: now())->format('Y-m-d'))->addClass('datepicker')->required() !!}
+                    {!!
+                        BootForm::date(__('Date'), 'date')
+                            ->value(old('date') ?: ($model->date ?: now())->format('Y-m-d'))
+                            ->addClass('datepicker')
+                            ->required()
+                    !!}
                 </div>
             </div>
 
             <x-core::title-and-slug-fields />
-            <div class="mb-3">
-                {!! TranslatableBootForm::hidden('status')->value(0) !!}
-                {!! TranslatableBootForm::checkbox(__('Published'), 'status') !!}
-            </div>
+            <div class="mb-3">{!! TranslatableBootForm::hidden('status')->value(0) !!} {!! TranslatableBootForm::checkbox(__('Published'), 'status') !!}</div>
             {!! TranslatableBootForm::textarea(__('Summary'), 'summary')->rows(4) !!}
             <x-core::tiptap-editors :model="$model" name="body" :label="__('Body')" />
         </div>
