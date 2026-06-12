@@ -7,7 +7,7 @@
         <div class="col-lg-8">
             <div class="row gx-3">
                 <div class="col-sm-6">
-                    <x-bootform::date :label="__('Date')" name="date" :value="old('date') ?: ($model->date ?: now())->format('Y-m-d')" class="datepicker" required />
+                    <x-bootform::date :label="__('Date')" name="date" :default-value="now()->format('Y-m-d')" required />
                 </div>
             </div>
 
