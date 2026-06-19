@@ -134,7 +134,7 @@ class News extends Model implements Feedable
     {
         return FeedItem::create()
             ->id($this->id)
-            ->title($this->title)
+            ->title($this->title ?? '')
             ->summary($this->summary ?? '')
             ->updated($this->updated_at ?? now())
             ->link($this->url() ?? '')
