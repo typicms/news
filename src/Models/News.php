@@ -12,7 +12,6 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Uri;
 use Override;
 use Spatie\Feed\Feedable;
@@ -21,6 +20,7 @@ use TypiCMS\Modules\Core\Models\File;
 use TypiCMS\Modules\Core\Models\History;
 use TypiCMS\Modules\Core\Observers\SlugObserver;
 use TypiCMS\Modules\Core\Observers\TipTapHTMLObserver;
+use TypiCMS\Modules\Core\Support\ModuleUrl;
 use TypiCMS\Modules\Core\Traits\HasAdminUrls;
 use TypiCMS\Modules\Core\Traits\HasBodyPresenter;
 use TypiCMS\Modules\Core\Traits\HasConfigurableOrder;
@@ -109,14 +109,8 @@ class News extends Model implements Feedable
     public function url(?string $locale = null): ?string
     {
         $locale ??= app()->getLocale();
-        $route = "{$locale}::news";
-        $slug = $this->translate('slug', $locale);
 
-        if (Route::has($route) && $slug) {
-            return route($route, $slug);
-        }
-
-        return null;
+        return ModuleUrl::item('news', $this->translate('slug', $locale), $locale);
     }
 
     public function previewUrl(?string $locale = null): ?string

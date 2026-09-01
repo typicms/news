@@ -45,12 +45,5 @@ class ModuleServiceProvider extends ServiceProvider
         $this->publishes([__DIR__.'/../../resources/scss' => resource_path('scss')], 'typicms-resources');
 
         View::composer('admin::core._sidebar', SidebarViewComposer::class);
-
-        /*
-         * Add the page in the view.
-         */
-        View::composer('public::news.*', function ($view): void {
-            $view->page = getPageLinkedToModule('news');
-        });
     }
 }

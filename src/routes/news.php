@@ -5,7 +5,7 @@ declare(strict_types=1);
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
 use TypiCMS\Modules\Core\Http\Controllers\FeedController;
-use TypiCMS\Modules\Core\Models\Page;
+use TypiCMS\Modules\Core\Support\ModuleRoutes;
 use TypiCMS\Modules\News\Http\Controllers\AdminController;
 use TypiCMS\Modules\News\Http\Controllers\ApiController;
 use TypiCMS\Modules\News\Http\Controllers\PublicController;
@@ -13,21 +13,11 @@ use TypiCMS\Modules\News\Http\Controllers\PublicController;
 /*
  * Front office routes
  */
-if (($page = getPageLinkedToModule('news')) instanceof Page) {
-    $middleware = $page->private ? ['public', 'auth'] : ['public'];
-    foreach (locales() as $lang) {
-        if ($page->isPublished($lang) && ($path = $page->path($lang))) {
-            Route::middleware($middleware)
-                ->prefix($path)
-                ->name($lang.'::')
-                ->group(function (Router $router): void {
-                    $router->get('/', [PublicController::class, 'index'])->name('index-news');
-                    $router->get('{module}-feed.xml', FeedController::class)->name('news-feed');
-                    $router->get('{slug}', [PublicController::class, 'show'])->name('news');
-                });
-        }
-    }
-}
+ModuleRoutes::group('news', function (Router $router): void {
+    $router->get('/', [PublicController::class, 'index']);
+    $router->get('{module}-feed.xml', FeedController::class);
+    $router->get('{slug}', [PublicController::class, 'show']);
+});
 
 /*
  * Admin routes
