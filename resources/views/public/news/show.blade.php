@@ -37,10 +37,6 @@
                 'publisher' => [
                     '@type' => 'Organization',
                     'name' => config('app.name'),
-                    'logo' => [
-                        '@type' => 'ImageObject',
-                        'url' => Vite::asset(config('typicms.logo')),
-                    ],
                 ],
                 'description' => $model->summary ? $model->summary : Str::limit(strip_tags($model->body), 200),
             ]"
