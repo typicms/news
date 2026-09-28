@@ -13,8 +13,8 @@ class FormRequest extends AbstractFormRequest
     {
         return [
             'date' => ['required', 'date_format:Y-m-d'],
-            'image_id' => ['nullable', 'integer'],
-            'og_image_id' => ['nullable', 'integer'],
+            'image_id' => ['nullable', 'integer', 'exists:files,id'],
+            'og_image_id' => ['nullable', 'integer', 'exists:files,id'],
             'title.*' => ['nullable', 'max:255'],
             'slug.*' => ['nullable', 'alpha_dash', 'max:255', 'required_if:status.*,1', 'required_with:title.*'],
             'status.*' => ['boolean'],
