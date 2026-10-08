@@ -1,10 +1,15 @@
-.news {
-    @extend .container;
-    @include padding-top(6rem);
-    @include padding-bottom(6rem);
-    &-date {
-        font-style: italic;
-        color: $primary;
-        margin-bottom: $paragraph-margin-bottom;
+@use 'bootstrap/scss/bootstrap' as bs;
+@use 'variables' as *;
+
+@layer custom {
+    .news {
+        @extend .container;
+        padding-top: 6rem;
+        padding-bottom: 6rem;
+        &-date {
+            font-style: italic;
+            color: $primary;
+            margin-bottom: $paragraph-margin-bottom;
+        }
     }
 }

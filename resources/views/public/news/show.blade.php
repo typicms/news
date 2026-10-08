@@ -7,7 +7,7 @@
     :page="$page"
     :model="$model"
 >
-    <article class="news container-xl">
+    <article class="news xl:container">
         <header class="news-header">
             <div class="news-header-container">
                 <div class="news-header-navigator">
