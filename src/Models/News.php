@@ -132,7 +132,7 @@ class News extends Model implements Feedable
             ->summary($this->summary ?? '')
             ->updated($this->updated_at ?? now())
             ->link($this->url() ?? '')
-            ->authorName($this->author ?? config('app.name'));
+            ->authorName(is_string($author = $this->getAttribute('author')) ? $author : config()->string('app.name'));
     }
 
     /** @return Attribute<string, null> */
