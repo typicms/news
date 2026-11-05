@@ -15,7 +15,7 @@ use TypiCMS\Modules\News\Models\News;
 
 final class ApiController extends BaseApiController
 {
-    /** @return LengthAwarePaginator<int, mixed> */
+    /** @return LengthAwarePaginator<int, News> */
     public function index(Request $request): LengthAwarePaginator
     {
         $query = News::query()->selectFields();
