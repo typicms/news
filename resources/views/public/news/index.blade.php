@@ -1,4 +1,4 @@
-<x-core::layouts.page :page="$page" :body-class="'body-news body-news-index body-page body-page-' . $page->id">
+<x-core::layouts.page :page="$page" :body-class="'body-news body-news-index body-page body-page-'.$page->id">
     <x-core::json-ld
         :schema="[
         '@context' => 'https://schema.org',
