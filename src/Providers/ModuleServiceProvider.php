@@ -6,6 +6,7 @@ namespace TypiCMS\Modules\News\Providers;
 
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\View\View as ViewInstance;
 use Override;
 use TypiCMS\Modules\News\Composers\SidebarViewComposer;
 
@@ -49,8 +50,8 @@ class ModuleServiceProvider extends ServiceProvider
         /*
          * Add the page in the view.
          */
-        View::composer('public::news.*', function ($view): void {
-            $view->page = getPageLinkedToModule('news');
+        View::composer('public::news.*', function (ViewInstance $view): void {
+            $view->with('page', getPageLinkedToModule('news'));
         });
     }
 }
