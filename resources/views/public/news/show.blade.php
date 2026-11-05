@@ -1,9 +1,9 @@
 <x-core::layouts.public
-    :title="$model->title . ' – ' . __('News') . ' – ' . websiteTitle()"
+    :title="$model->title.' – '.__('News').' – '.websiteTitle()"
     :og-title="$model->title ?? ''"
     :description="$model->summary ?? ''"
     :og-image="$model->ogImageUrl()"
-    :body-class="'body-news body-news-' . $model->id . ' body-page body-page-' . $page->id"
+    :body-class="'body-news body-news-'.$model->id.' body-page body-page-'.$page->id"
     :page="$page"
     :model="$model"
 >
@@ -48,7 +48,13 @@
             <x-core::share-links :$model />
             @if ($model->image)
                 <figure class="news-picture">
-                    <img class="news-picture-image" src="{{ $model->image->render(2000) }}" width="{{ $model->image->width }}" height="{{ $model->image->height }}" alt="" />
+                    <img
+                        class="news-picture-image"
+                        src="{{ $model->image->render(2000) }}"
+                        width="{{ $model->image->width }}"
+                        height="{{ $model->image->height }}"
+                        alt=""
+                    />
                     @if ($model->image->description)
                         <figcaption class="news-picture-legend">{{ $model->image->description }}</figcaption>
                     @endif
